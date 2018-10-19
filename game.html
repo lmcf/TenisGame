@@ -10,7 +10,9 @@
 		var ballSpeedY = 4;
 
 		var paddle1Y = 250;
+		var paddle2Y = 250;
 		const PADDLE_HEIGHT = 100;
+		const PADDLE_THICKNESS = 10;
 
 		function calculateMousePos(evt){
 			var rect = canvas.getBoundingClientRect();
@@ -45,12 +47,22 @@
 
 		}
 
+		function ballReset(){
+			ballSpeedX = -ballSpeedX;
+			ballX = canvas.width/2;
+			ballY = canvas.height/2;
+		}
+
 		function moveEverything(){
 			ballX = ballX + ballSpeedX;
 			ballY = ballY + ballSpeedY;
-			//ballSpeedX = ballSpeedX + 1; //Velocidad de la pelota incrementa
+
 			if (ballX < 0) {
-				ballSpeedX = -ballSpeedX; 
+				if(ballY > paddle1Y && ballY < paddle1Y+PADDLE_HEIGHT){
+					ballSpeedX = -ballSpeedX;
+				}else{
+					ballReset();
+				}
 			}
 			if (ballX > canvas.width) {
 				ballSpeedX = -ballSpeedX;
@@ -71,7 +83,9 @@
 			//Fondo
 			colorRect(0,0,canvas.width,canvas.height,'black');
 			//Left player
-			colorRect(0,paddle1Y,10,PADDLE_HEIGHT,'white');
+			colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
+			//Right player IA
+			colorRect(canvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'white');
 			//Ball
 			colorCircle(ballX,ballY,10,'white');
 			
@@ -91,6 +105,8 @@
 			canvasContext.fillStyle = drawColor;
 			canvasContext.fillRect(leftX,topY,width,height);
 		}
+
+
 
 	</script>
 </html>
