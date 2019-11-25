@@ -25,10 +25,10 @@
 			var root = document.documentElement;
 			var mouseX = evt.clientX - rect.left - root.scrollLeft;
 			var mouseY = evt.clientY - rect.top - root.scrollTop;
-			return 
-			{
-				x:mouseX,
-				y:mouseY
+			return {
+				y: mouseY,
+				x: mouseX
+				
 			};
 		}
 
@@ -166,11 +166,11 @@
 				canvasContext.fillStyle = 'white';
 				if(player1Score >=WINNING_SCORE)
 				{
-					canvasContext.fillText("Jugador de la izquierda ganó",350,200);
+					canvasContext.fillText("You WIN!",350,200);
 				}
 				else if (player2Score >= WINNING_SCORE)
 				{
-					canvasContext.fillText("Jugador de la derecha ganó",350,200);
+					canvasContext.fillText("IA WIN",350,200);
 				}
 
 				canvasContext.fillText("click to continue", 350, 500);
